@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise2</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="startTime()">
+    <label class="switch">
+        <input type="checkbox" >
+         <span class="slider round"></span>
+    </label>
+    
+    <div class="clock_holder"> 15:07:23 <div>
+  
+
+    <script>
+        check = document.getElementsByTagName("input")[0];
+        
+        check.addEventListener("click",function(){
+            if(check.checked == true){
+                document.getElementsByTagName("body")[0].style.backgroundColor="black";
+                document.getElementsByTagName("div")[0].style.color="white";
+                document.getElementsByTagName("div")[0].style.border="1px solid white";
+            }
+            else{
+                document.getElementsByTagName("body")[0].style.backgroundColor="white";
+                document.getElementsByTagName("div")[0].style.color="black";
+                document.getElementsByTagName("div")[0].style.border="1px solid black";
+            }
+
+        })
+
+        function startTime() {
+            const today = new Date();
+            let h = today.getHours();
+            let m = today.getMinutes();
+            let s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementsByTagName("div")[0].innerHTML =  h + ":" + m + ":" + s;
+            setTimeout(startTime, 1000);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+        
+    </script>
+
+</body>
+</html>
