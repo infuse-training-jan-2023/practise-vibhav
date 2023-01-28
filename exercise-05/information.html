@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="displaymore"></div>
+
+    <script>
+        var display =  document.getElementsByClassName("displaymore")[0];
+        var val = JSON.parse(sessionStorage.getItem("pokemon"));
+        var output  = " Forms: "+val.forms[0].name +" "+val.forms[0].url + "<br> Moves: ";
+        val.moves.map((elem,index)=>{
+        output += elem.move.name+ ", ";
+       });
+       output += "<br> Stats: "
+       val.stats.map((elem,index)=>{
+        output += elem.base_stat+ ", ";
+       });
+
+       output += "<br> Species: "+val.species.name +" "+val.species.url ;
+       console.log(output)
+
+      display.innerHTML=output.substring(1, 100)+"...";
+       display.addEventListener("click",function(){
+            display.innerHTML = output;
+       })
+    </script>
+</body>
+</html>
