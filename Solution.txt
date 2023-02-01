@@ -1,0 +1,26 @@
+Difference between inheritance and composition
+=> In object-oriented programming, we can use inheritance when we know there is an "is a" relationship between a child and its parent class. car is a vehicle would be a good example. 
+We can use composition in cases where one object "has" (or is part of) another object. Example A car has a engine (engine is part of a car).
+
+
+List Append vs List Extend
+=> Append method is used when we want to add a single item to the end of a list.
+we use this method if we need to append several items to a list as individual items. 
+example nums = [1,2,3] nums.append(4) : o/p = [1,2,3,4]
+new_values = [23,24,25] nums.extend(new_values) : o/p = [1,2,3,4,23,24,25]
+
+If we try to pop more than the length of array it gives => IndexError: pop index out of range
+
+Writing a python package
+A must to remember:
+    The Python package must have a unique name. No two existing Python packages can share the same name.
+    The parent folder and sub-folder must have the same name, which is the name of our package.
+    Inside the main file there are parameters name and packages. They also should have the same name as our package.
+    Inside the main file there should be author_email parameter.
+
+    To publish the package following commands to be run:
+    $pip install setuptools and twine
+    $python <filename> sdist
+    $twine upload dist/*
+    Go to PyPI, click on the account and go to Your Projects. If everything is fine you should see your package there. 
+    To use the package 
