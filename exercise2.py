@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/password/<string:password>', methods = ['GET'])
 def validate(password):
-    valid = r'[A-Za-z0-9@#$%^&+=]{8,}'
+    valid = r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$'
     if re.match(valid,password):
         return "Valid"
     return "Invalid"
