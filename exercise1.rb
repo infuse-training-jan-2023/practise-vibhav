@@ -1,16 +1,14 @@
 require 'selenium-webdriver'
 
-class Exercise
+class MaximizeWindow
 
     def setup
         Selenium::WebDriver::Firefox::Service.driver_path = "/home/vibhav/Desktop/INFUSE/driver/geckodriver"
         @driver = Selenium::WebDriver.for :ff
-        #@url = "https://www.google.com"
     end
 
-    def action
+    def maximization
         begin
-            #@driver.get(@url)
             @driver.manage.window.maximize
         rescue Exception => e
             e.message
@@ -22,6 +20,6 @@ class Exercise
 
 end
 
-obj = Exercise.new
-obj.setup
-obj.action
+maximizeWindowObject = Exercise.new
+maximizeWindowObject.setup
+maximizeWindowObject.maximization
