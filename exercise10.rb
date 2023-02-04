@@ -13,8 +13,7 @@ class Exercise
         begin
             @driver.get(@url)
             wait.until { @driver.find_element(:id, "main") }
-            cols = @driver.find_elements(:css, "thead tr th")
-            #puts cols.length
+            cols = @driver.find_elements(:tag_name, "th")
             if val < 0 or val > cols.length
                 raise "Index out of bound error"
             end
