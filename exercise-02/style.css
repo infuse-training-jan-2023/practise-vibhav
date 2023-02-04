@@ -19,6 +19,18 @@
 
 }
 
+.light{
+    color: black;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.dark{
+    color: white;
+    border: 1px solid white;
+    background-color: black;
+}
+
 .switch {
     position: relative;
     display: inline-block;
