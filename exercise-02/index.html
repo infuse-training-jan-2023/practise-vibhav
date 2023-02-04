@@ -21,14 +21,11 @@
         
         check.addEventListener("click",function(){
             if(check.checked == true){
-                document.getElementsByTagName("body")[0].style.backgroundColor="black";
-                document.getElementsByTagName("div")[0].style.color="white";
-                document.getElementsByTagName("div")[0].style.border="1px solid white";
+                document.getElementsByTagName("body")[0].className="dark";
+                
             }
             else{
-                document.getElementsByTagName("body")[0].style.backgroundColor="white";
-                document.getElementsByTagName("div")[0].style.color="black";
-                document.getElementsByTagName("div")[0].style.border="1px solid black";
+                document.getElementsByTagName("body")[0].className="light";
             }
 
         })
