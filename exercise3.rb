@@ -13,8 +13,6 @@ class Exercise
             @driver.get(@url)
             sleep(5)
             @driver.find_element(:class,"mic_cont").click
-            
-
         rescue Exception => e
             e.message
         ensure
