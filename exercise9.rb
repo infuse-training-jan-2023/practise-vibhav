@@ -1,6 +1,6 @@
 require 'selenium-webdriver'
 
-class Exercise
+class GetTableRows
 
     def setup
         Selenium::WebDriver::Firefox::Service.driver_path = "/home/vibhav/Desktop/INFUSE/driver/geckodriver"
@@ -8,13 +8,10 @@ class Exercise
         @url = "https://cosmocode.io/automation-practice-webtable"
     end
 
-    def action
+    def printRow
         begin
             @driver.get(@url)
-           
-            select = @driver.find_element(:tag_name, "tr")
-            #puts select
-            all_headers = select.find_elements(:tag_name, "strong")
+            all_headers = @driver.find_element(:css, "#countries > tbody:nth-child(1) > tr:nth-child(1)")
             all_headers.each do |header|
                 puts header.text
             end
@@ -28,6 +25,6 @@ class Exercise
 
 end
 
-obj = Exercise.new
-obj.setup
-obj.action
+getTableRowsObject = Exercise.new
+getTableRowsObject.setup
+getTableRowsObject.printRow
