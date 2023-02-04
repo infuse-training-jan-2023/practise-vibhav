@@ -1,6 +1,6 @@
 require 'selenium-webdriver'
 
-class Exercise
+class GetOptions
 
     def setup
         Selenium::WebDriver::Firefox::Service.driver_path = "/home/vibhav/Desktop/INFUSE/driver/geckodriver"
@@ -8,17 +8,13 @@ class Exercise
         @url = "https://letcode.in/forms"
     end
 
-    def action
+    def printOptions
         begin
             @driver.get(@url)
            
             select = @driver.find_element(:tag_name, "select")
-            #puts select
             all_options = select.find_elements(:tag_name, "option")
-            #puts all_options
             all_options.each do |option|
-                #puts "Value is: " + option.text #.attribute("value")
-                #option.click
                 puts option.text
             end
         rescue Exception => e
@@ -31,6 +27,6 @@ class Exercise
 
 end
 
-obj = Exercise.new
-obj.setup
-obj.action
+getOptionsObject = Exercise.new
+getOptionsObject.setup
+getOptionsObject.printOptions
