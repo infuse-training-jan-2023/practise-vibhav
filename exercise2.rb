@@ -1,6 +1,6 @@
 require 'selenium-webdriver'
 
-class Exercise
+class GetTitle
 
     def setup
         Selenium::WebDriver::Firefox::Service.driver_path = "/home/vibhav/Desktop/INFUSE/driver/geckodriver"
@@ -8,7 +8,7 @@ class Exercise
         @url = "https://www.google.com"
     end
 
-    def action
+    def displayTitle
         begin
             @driver.get(@url)
             puts "Title of the website : #{@driver.title}"
@@ -22,6 +22,6 @@ class Exercise
 
 end
 
-obj = Exercise.new
-obj.setup
-obj.action
+getTitleObject = GetTitle.new
+getTitleObject.setup
+getTitleObject.displayTitle
