@@ -13,10 +13,9 @@ class GetOptions
             @driver.get(@url)
            
             select = @driver.find_element(:tag_name, "select")
-            all_options = select.find_elements(:tag_name, "option")
-            all_options.each do |option|
-                puts option.text
-            end
+            select = driver.find_element(:class, "select")
+            puts select.text
+            sleep(5)
         rescue Exception => e
             e.message
         ensure
@@ -27,6 +26,6 @@ class GetOptions
 
 end
 
-getOptionsObject = Exercise.new
+getOptionsObject = GetOptions.new
 getOptionsObject.setup
 getOptionsObject.printOptions
