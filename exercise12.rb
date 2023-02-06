@@ -15,8 +15,7 @@ class Exercise
         begin
             @wait.until{ @driver.find_element(:tag_name,"body")}
             search = @driver.find_element(:name,"search_key")
-            search.send_keys(hotel)
-            search.send_keys(:enter)
+            search.send_keys(hotel + to_s(:enter))
             option = @wait.until{ @driver.find_element(:css,"html body div.wrapper div.container-fluid.listing-wapper.listing-option3 div.row div.col-md-12 div.row div.col-md-12 div.row div.col-md-12.text-center form label.radio-inline input")}
             option.click
             @driver.find_element(:css,".panel-body > h5:nth-child(13) > a:nth-child(1)").click
