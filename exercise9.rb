@@ -25,6 +25,6 @@ class GetTableRows
 
 end
 
-getTableRowsObject = Exercise.new
+getTableRowsObject = GetTableRows.new
 getTableRowsObject.setup
 getTableRowsObject.printRow
