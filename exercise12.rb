@@ -1,6 +1,6 @@
 require 'selenium-webdriver'
 
-class Exercise
+class ExploreWebsite
 
     def setup
         Selenium::WebDriver::Firefox::Service.driver_path = "/home/vibhav/Desktop/INFUSE/driver/geckodriver"
@@ -43,8 +43,8 @@ class Exercise
 
 end
 
-obj = Exercise.new
-obj.setup
-obj.searchHotel("Vivanta")
-obj.getBeaches
-obj.finish
+websiteObject = ExploreWebsite.new
+websiteObject.setup
+websiteObject.searchHotel("Vivanta")
+websiteObject.getBeaches
+websiteObject.finish
