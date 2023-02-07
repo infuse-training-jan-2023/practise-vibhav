@@ -1,0 +1,2 @@
+$ docker image build -t python:0.0.1 /home/vibhav/Desktop/INFUSE/Docker/Python/
+$ docker run -e USER="Vibhav Pissurlenkar" -ti  9b5e2b297fb1

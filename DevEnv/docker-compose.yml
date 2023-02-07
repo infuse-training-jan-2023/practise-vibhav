@@ -1,0 +1,27 @@
+version: '3.2'
+services:
+  server:
+    build:
+      context: ./backend
+    command: npm run start
+    volumes:
+      - ./backend:/home/vibhav/Desktop/INFUSE/Docker/DevEnv/Back_END
+      - home/vibhav/Desktop/INFUSE/Docker/DevEnv/node_modules
+    ports:
+      - "5000:5000"
+    environment:
+      WATCHPACK_POLLING: "true"
+
+  client:
+    build:
+      context: ./frontend
+    command: npm start
+    volumes:
+      - ./frontend:home/vibhav/Desktop/INFUSE/Docker/DevEnv/Front_END/src
+      - home/vibhav/Desktop/INFUSE/Docker/DevEnv/node_modules
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
+    environment:
+      WATCHPACK_POLLING: "true"
