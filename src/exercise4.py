@@ -31,7 +31,6 @@ def delete_item():
   request_data = request.get_json()
   id = request_data['id']
   item_resp = item_actions.delete_item(id)
-  print(item_resp)
   if item_resp == {}:
     return Response("{'error': 'Item id may not be present in the database.'}", mimetype='application/json', status=500)
   return Response(json.dumps(item_resp), mimetype='application/json', status=200)
