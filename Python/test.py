@@ -1,6 +1,9 @@
 import numpy as np
 import os
 
+print(This code is written in)
+print(os.getenv("SCRIPTTYPE"))
+
 output = input("Enter your name: ")
 print("Your name is " + output)
 
