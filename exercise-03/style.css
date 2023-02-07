@@ -1,0 +1,276 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 15.7% auto;
+  grid-gap: 0;
+
+}
+
+aside {
+  border-right: 1px solid rgb(205, 205, 205);
+  width: 200px;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow:  5px 3px 15px grey;
+
+}
+
+
+.um-logo {
+  padding: 16px 24px;
+  border-bottom: 1px solid rgb(205, 205, 205);
+  width: 100%;
+}
+
+
+
+.um-user{
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 10px 0px 10px 0px;
+  font-size: smaller;
+}
+
+.um-user-name{
+  margin-left: 1vw;
+  color: #3284aa;
+  font-weight: bold;
+}
+
+.um-user-email {
+  margin-left: 1vw;
+  font-size: x-small;
+  color: #3284aa
+  ;
+}
+
+.um-user img {
+  margin-left: 1vw;
+  width: 40px;
+}
+
+.test-designer {
+  width: 50%;
+  height: 200px;
+}
+
+
+.um-navitems__main, .um-navitems__secondary{
+  padding: 0px;
+  
+}
+
+li:nth-of-type(5){
+  border-left: 4px solid #02a9cb ;
+  border-bottom: 1.5px solid #a4a4a4;
+}
+
+li{
+  list-style-type: none;
+  height: 25px;
+  font-size: 20px;
+  padding: 10px 0px 35px 20px;
+  margin-top: 0.5px;
+  margin-bottom: 0.5px;
+  color: #18a1da;
+  vertical-align: middle;
+}
+
+li span{
+  margin-left: 15px;
+  color: #3284aa  ;
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 15px;
+
+}
+
+
+.um-navitems__main :hover , .um-navitems__secondary :hover{
+  background-color: #add8e6;
+}
+
+
+.test{
+  margin-top: 15px;
+  margin-right: 10px;
+  box-shadow:  3px 8px 10px 15px rgba(0, 0, 0, 0.1), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 570px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+.test-data > span:first-child{
+  background: black;
+  padding: 5px;
+  margin:0px;
+}
+
+.bi:hover{
+  background-color:blue;
+}
+
+.test-data > span:nth-child(2){
+  background-color: #016392 ;
+  padding: 5px;
+  margin:-5px;
+  display: inline-block;
+  width: 96.6%;
+  font-weight: bold;
+}
+
+.test-data > i:first-of-type{
+  position: fixed;
+  top:14px;
+  left:390px;
+}
+
+.test-data > i:nth-of-type(2){
+  position: fixed;
+  top:7px;
+  left:1325px;
+  font-size: 30px;
+  
+}
+
+.test-properties > span:first-child{
+  background-color: #1e79b0;
+  display: block;
+  height: 26px;
+  padding: 5px;
+  font-weight: 200;
+  margin-bottom: 10px;
+}
+
+.details , .description{
+  color: #3386ad;
+  font-weight: bold;
+  margin-left: 5px;
+  text-transform: lowercase;
+}
+.details > label{
+  display: inline-block;
+}
+.details > label::first-letter {
+  text-transform: uppercase;
+}
+.details > label::after {
+    content: ":";
+}
+
+.details > select{
+  color: grey;
+  appearance: none;
+  border: none;
+  margin-left:-10px;
+  background-color: white;
+  background: url(./arrow.png) no-repeat center right;
+  padding:  8px 32px 8px 16px;
+}
+
+#tags{
+  display: none;
+}
+
+.details > i::after{
+  margin-left: 10px;
+  text-transform: none;
+  content: "Add tag";
+}
+
+.description > label{
+  position: fixed;
+  top:75px;
+  left:700px;
+  text-transform: capitalize;
+}
+
+.description > textarea{
+  width: 40.5%;
+  height: 130px;
+  position: fixed;
+  top:62px;
+  left:800px;
+  background-color: #e7e7e7;
+  border: 2px solid #dde0e8;
+  border-radius: 4px;
+  resize: none;
+}
+
+/*.test-main{
+  display: flex;
+  flex-wrap: wrap;
+}*/
+
+.test-flowchart > span:first-child {
+  display: block;
+  width: 65%;
+  padding: 2px;
+  padding-left: 4px;
+  background-color: #00a2ce;
+  margin-top: 78px;
+}
+
+.options{
+  padding: 5px;
+  color: #717283;
+  width: 65%;
+  font-size: large;
+  border-right: 2px solid #7fd2e7;
+}
+
+.options > i{
+  margin-right: 5px;
+}
+
+.test-designer{
+  border-right: 2px solid #7fd2e7;
+  width: 65%;
+ height: 332px;
+}
+
+.test-main >.test-data {
+  position: fixed;
+  top:200px;
+  left: 965px;
+  border-left: 2px solid #7fd2e7;
+
+}
+
+.test-variables > span:first-child , .test-parameters > span:first-child{
+  background-color: #1e79b0;
+  display: block;
+  width: 389px;
+  padding: 2px;
+  padding-left: 5px;
+}
+
+.test-variables > i , .test-parameters > i{
+  padding-left: 360px;
+  font-weight: 800;
+  font-size: 32px;
+  color: #2481b5;
+  width: 389px;
+}
+
+.table-header{
+  color: #1e79b0;
+  font-weight: bold;
+  padding-left: 25px;
+  border-bottom: 1px solid #e2dcee;
+  margin-bottom: 114px;
+}
+
+.table-header > span{
+  margin-right: 50px;
+}
+
+
+
+
+
+
