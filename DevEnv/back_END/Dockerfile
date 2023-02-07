@@ -1,6 +1,6 @@
 FROM node
-COPY . /home/vibhav/Desktop/INFUSE/Docker/rubyTest
-WORKDIR /home/vibhav/Desktop/INFUSE/Docker/rubyTest
+COPY . home/vibhav/Desktop/INFUSE/Docker/DevEnv/back_END
+WORKDIR home/vibhav/Desktop/INFUSE/Docker/DevEnv/back_END
 COPY package*.json ./
 RUN npm install
 RUN npm install -g nodemon 
