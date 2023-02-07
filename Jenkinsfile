@@ -1,11 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('Run Test') {
-            steps {
-                sh 'ruby ./test_challenge3.rb'
-            }
-        }
         stage('Test') {
             steps {
                 bat "git clone https://github.com/infuse-training-jan-2023/Practice-Vibhav/"
