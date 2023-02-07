@@ -17,8 +17,8 @@ class SerialAverage:
 			avg = resStr[0]+"-" 	
 			avg += str(format((((float(resStr[len(resStr)-2])+float(resStr[len(resStr)-1]))/2)), '.2f'))
 			return avg
-		except TypeError:
-			return "Input recieved is of invalid format"
+		except Exception as e:
+			raise e
 
 		
 #obj = SerialAverage('002-1h.00-20.00')
