@@ -21,7 +21,7 @@ def get_an_item(id):
 def save_data(filename):
   item_resp = item_actions.save_data(filename)
   if item_resp == []:
-    return Response("{'error': 'Item id may not be present in the database.'}", mimetype='application/json', status=500)
+    return Response("{'error': 'Saving data into excel file wasn't successfull.'}", mimetype='application/json', status=500)
   return Response(json.dumps(item_resp), mimetype='application/json', status=200)
 
 
@@ -55,7 +55,7 @@ def register():
   dob = request_data['DOB']
   added_user = user_actions.add_user(name,dob)
   if added_user == {}:
-    return Response("{'error': 'Erro addding the item'}", mimetype='application/json', status=500)
+    return Response("{'error': 'Error addding the user'}", mimetype='application/json', status=500)
   return Response(json.dumps(added_user), mimetype='application/json', status=201)
 
 
