@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('fetch') {
+            steps {
+                getElems('https://jsonplaceholder.typicode.com/todos')
+            }
+        }
+    }
+}
+
+def getElems(url){
+	try {
+		URL apiurl = new URL(url)
+		def data= new groovy.json.JsonSlurper().parse(apiurl)
+		data.each{ elem ->
+			if(!elem.completed)
+				println elem
+		} 
+	} 
+	catch(Exception e){
+		println "Exception ${e}"
+	}
+}

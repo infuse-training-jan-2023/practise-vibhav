@@ -1,0 +1,3 @@
+mkdir /home/vibhav/Desktop/INFUSE/Jenkins-root/test-folder
+#whoami
+echo "Test Data"> /home/vibhav/Desktop/INFUSE/Jenkins-root/test-folder/test.txt

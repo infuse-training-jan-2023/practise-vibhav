@@ -1,0 +1,18 @@
+pipeline {
+    agent {
+        label "jenkins-slave-vibhav"
+    }
+
+    stages {
+        stage('build') {
+            steps {
+                print env.STAGE_NAME
+            }
+        }
+        stage('test') {
+            steps {
+                echo env.STAGE_NAME
+            }
+        }
+    }
+}
