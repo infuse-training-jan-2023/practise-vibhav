@@ -33,13 +33,18 @@ module SeleniumFramework
         end
         
     end
-
-    def clickElement(validator,identity)
+    
+    def intialze(driver)
+	$driver=driver
+    end
+	
+	
+    def clickElement(identifier,entity_val)
         begin 
-            if validator==nil or  identity==nil
+            if identifier==nil or  entity_val==nil
                 raise "Invalid input error"
             end
-            element = $driver.find_element(validator,identity)
+            element = getElement(identifier,entity_val)
             puts "Element to be clicked #{element}"
             element.click
         rescue Exception => e
@@ -48,13 +53,13 @@ module SeleniumFramework
         end
     end
 
-    def enterText(validator,identity,message)
+    def enterText(identifier,entity_val,message)
         begin 
-            if validator==nil or  identity==nil or message==nil
+            if identifier==nil or  entity_val==nil or message==nil
                 raise "Invalid input error"
             end
             
-        	element = $driver.find_element(validator,identity)
+        	element = $driver.find_element(identifier,entity_val)
         	puts "Text to be entered in #{element}"
         	element.send_keys(message)
         rescue Exception => e
@@ -63,47 +68,52 @@ module SeleniumFramework
         end
     end
     
-    def getElement(validator,identity)
+    def getElement(identifier,entity_val)
     	begin
-    		if validator==nil or  identity==nil 
+    		if identifier==nil or  entity_val==nil 
                 raise "Invalid input error"
             end
-    		return $driver.find_element(validator,identity)
+    		return $driver.find_element(identifier,entity_val)
     	rescue Exception => e
             puts e.message
             return e.message
         end
     end
        
-    def getElementsInside(inside,validator,identity)
+    def getElementsInside(inside,identifier,entity_val)
     	begin
-    		if validator==nil or  identity==nil or inside==nil
+    		if identifier==nil or  entity_val==nil or inside==nil
                 raise "Invalid input error"
             end
-    		return inside.find_elements(validator,identity)
+    		return inside.find_elements(identifier,entity_val)
     	rescue Exception => e
             puts e.message
             return e.message
         end
     end
     			
-    
-    def checkDisplay(validator,identity)
+    def driver
+	    $driver
+    end 
+	
+    def checkDisplay(identifier,entity_val)
 		begin
-    		element = $wait.until{$driver.find_element(validator,identity)}
+    		element = $wait.until{$driver.find_element(identifier,entity_val)}
     		return element.displayed?
     	rescue Exception => e
     		puts e.message
     	end
     end
     
-    def getDriver 
+    def driver 
     	return $driver
     end
+	
     
-    def done
+    def quit_browser()
     	$driver.quit
     	return "exited successfully"
     end
 
 end
+
