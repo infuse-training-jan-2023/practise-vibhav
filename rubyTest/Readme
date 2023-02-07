@@ -1,0 +1,6 @@
+$ docker build -t ruby-app . 
+$ docker run ruby-app
+
+
+docker build -t items .
+docker build -p 5000:5000 -t items .

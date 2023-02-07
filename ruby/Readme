@@ -1,0 +1,2 @@
+$ docker build -t ruby-app .  
+$ docker run -e PROGRAM="RUBY PROG." -ti ruby-app
