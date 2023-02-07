@@ -1,0 +1,3 @@
+extracted : the string that will be base encoded 
+encoded : dGhlIHN0cmluZyB0aGF0IHdpbGwgYmUgYmFzZSBlbmNvZGVk
+ 
