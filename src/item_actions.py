@@ -45,9 +45,9 @@ class ItemActions:
       print(e)
       return {}
 
-  def save_data(self, filename):
+  def save_data_to_excel(self, filename):
     try:
-      item = self.item_repo.save_data(filename)
+      item = self.item_repo.save_data_to_excel(filename)
       return item
     except Exception as e:
       print(e)
