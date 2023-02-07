@@ -13,6 +13,10 @@ cards = document.getElementsByClassName("grid-item");
   .then( async(data) =>{    nextPage = data.next; prevPage = data.previous;
     for(element of data.results){
       const response = await fetch(element.url)
+      //<div class="grid-item"> </div>
+      var div = document.createElement("div");
+      div.className ="grid-item";
+      document.getElementByClassName("grid-container").appendChild(div);
 
       const pokemon = await response.json()
       pokemonvals.push(pokemon)
