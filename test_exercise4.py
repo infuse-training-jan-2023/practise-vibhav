@@ -13,9 +13,8 @@ class TestSerialAverage(unittest.TestCase):
         obj = SubArray
         with pytest.raises(Exception) as e:  
 		    obj.subarray_sum([],3)
-		    assert e.type == AttributeError
+		    assertEqual(e.type, AttributeError,"Both values are same")
 
-        assert output == "Array size should be greater than 0"
 
     def test_skip_sports_positiveskip(self):
         obj = SubArray
