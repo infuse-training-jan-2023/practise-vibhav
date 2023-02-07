@@ -76,7 +76,7 @@ class ItemRepository:
     except Exception as e:
       raise Exception('Error: ', e)
 
-  def save_data(self,filename):
+  def save_data_to_excel(self,filename):
     try:
       file = open(filename+'.csv', 'w')
       file =  csv.writer(file)
@@ -98,5 +98,6 @@ class ItemRepository:
       return "Writting was successfully"
     except Exception as e:
       raise Exception('Error: ', e)
-
-  
+      
+      
+      
