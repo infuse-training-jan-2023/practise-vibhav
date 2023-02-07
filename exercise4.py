@@ -4,7 +4,7 @@ class SubArray:
     def subarray_sum(arr,k):
         try:
             if len(arr) < 1 :
-                raise AttributeError
+                raise AttributeError("Array size should be greater than 0")
             map = {0:1}
             sum = 0 
             cnt = 0 
@@ -17,8 +17,5 @@ class SubArray:
                 map.update({sum:map.get(sum ,0)+1})
             #result = [i for i in range(len(arr)) if arr[i]+arr[:len(arr)] == k ]
             return cnt #len(result)
-        except AttributeError:
-            return "Array size should be greater than 0"
-	
-#obj = SubArray
-#print(obj.subarray_sum([3,2,1,3],3))
+        except AttributeError as a:
+            return a
