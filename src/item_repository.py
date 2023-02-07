@@ -31,13 +31,21 @@ class ItemRepository:
       return rows
     except Exception as e:
       raise Exception('Error: ', e)
+  
+  def check_item(self,item):
+    try:
+      cursor = self.connection.cursor()
+      cursor.execute('select count(id) from items where id = ?',(item,))
+      return cursor.fetchone()[0]
+    except  Exception as e:
+      raise Exception('Error: ',e)
+    
 
   def delete_item(self, item):
     try:
       self.connect_db()
       cursor = self.connection.cursor()
-      cursor.execute('select count(id) from items where id = ?',(item,))
-      val = cursor.fetchone()[0]
+      val = check_item(item)
       if  val ==0 :
         return {}
       delete_cursor = cursor.execute('delete from items where id = ?', (item,))
@@ -50,8 +58,7 @@ class ItemRepository:
     try:
       self.connect_db()
       cursor = self.connection.cursor()
-      cursor.execute('select count(id) from items where id = ?',(id,))
-      val = cursor.fetchone()[0]
+      val = check_item(item)
       if  val ==0 :
         return {}
       update_cursor = cursor.execute('update items set item =?,status=?,reminder=?  where id = ?', (item,status,reminder,id))
@@ -98,6 +105,5 @@ class ItemRepository:
       return "Writting was successfully"
     except Exception as e:
       raise Exception('Error: ', e)
-      
       
       
