@@ -19,7 +19,7 @@ def get_an_item(id):
 
 @app.route('/savetoexcel/<string:filename>', methods = ['GET'])
 def save_data(filename):
-  item_resp = item_actions.save_data(filename)
+  item_resp = item_actions.save_data_to_excel(filename)
   if item_resp == []:
     return Response("{'error': 'Saving data into excel file wasn't successfull.'}", mimetype='application/json', status=500)
   return Response(json.dumps(item_resp), mimetype='application/json', status=200)
