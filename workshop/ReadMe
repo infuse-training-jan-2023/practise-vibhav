@@ -1,0 +1,2 @@
+Commands to run
+docker build -t automation .  && docker run automation
