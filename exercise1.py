@@ -19,9 +19,3 @@ class SerialAverage:
 			return avg
 		except Exception as e:
 			raise e
-
-		
-#obj = SerialAverage('002-1h.00-20.00')
-#print(obj.getAverage())
-		
-
