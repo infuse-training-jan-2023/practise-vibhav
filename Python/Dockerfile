@@ -6,4 +6,6 @@ RUN pip install --no-cache-dir -U numpy
 
 COPY test.py ./
 
+ENV SCRIPTTYPE=PYTHON
+
 CMD [ "python", "./test.py"]
