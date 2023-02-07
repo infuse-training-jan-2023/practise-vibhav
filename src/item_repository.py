@@ -32,41 +32,66 @@ class ItemRepository:
     except Exception as e:
       raise Exception('Error: ', e)
   
-  def check_item(self,item):
+  def check_item(self,id):
     try:
       cursor = self.connection.cursor()
-      cursor.execute('select count(id) from items where id = ?',(item,))
+      cursor.execute('select count(id) from items where id = ?',(id,))
       return cursor.fetchone()[0]
     except  Exception as e:
       raise Exception('Error: ',e)
     
 
-  def delete_item(self, item):
+  def delete_item(self, id):
     try:
       self.connect_db()
       cursor = self.connection.cursor()
-      val = check_item(item)
+      val = check_item(id)
       if  val ==0 :
         return {}
-      delete_cursor = cursor.execute('delete from items where id = ?', (item,))
+      delete_cursor = cursor.execute('delete from items where id = ?', (id,))
       self.connection.commit()
       return "Delete was successful"
     except Exception as e:
       raise Exception('Error: ', e)
 
-  def update_item(self, id,item,status,reminder):
+  def update_item_status(self, id,status):
+    try:
+      self.connect_db()
+      cursor = self.connection.cursor()
+      val = check_item(id)
+      if  val ==0 :
+        return {}
+      update_cursor = cursor.execute('update items set status=?  where id = ?', (status,id))
+      self.connection.commit()
+      return "Update was successful"
+    except Exception as e:
+      raise Exception('Error: ', e)
+      
+  def update_item(self, id,item):
     try:
       self.connect_db()
       cursor = self.connection.cursor()
       val = check_item(item)
       if  val ==0 :
         return {}
-      update_cursor = cursor.execute('update items set item =?,status=?,reminder=?  where id = ?', (item,status,reminder,id))
+      update_cursor = cursor.execute('update items set item=?  where id = ?', (item,id))
       self.connection.commit()
       return "Update was successful"
     except Exception as e:
       raise Exception('Error: ', e)
 
+  def update_item(self, id,reminder):
+    try:
+      self.connect_db()
+      cursor = self.connection.cursor()
+      val = check_item(item)
+      if  val ==0 :
+        return {}
+      update_cursor = cursor.execute('update items set reminder=?  where id = ?', (reminder,id))
+      self.connection.commit()
+      return "Update was successful"
+    except Exception as e:
+      raise Exception('Error: ', e)      
 
   def add_item(self, item, reminder):
     try:
