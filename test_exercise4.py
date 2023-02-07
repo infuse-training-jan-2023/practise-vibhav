@@ -6,16 +6,21 @@ class TestSerialAverage(unittest.TestCase):
     def test_skip_sports_onesubarray(self):
         obj = SubArray
         output = obj.subarray_sum([2,1,13,4],3)
-        assert output == 1
+        message = "Both the values are equal"
+        assertEqual(output, 1, message)
 
     def test_skip_sports_arrayzerosize(self):
         obj = SubArray
-        output = obj.subarray_sum([],3)
+        with pytest.raises(Exception) as e:  
+		    obj.subarray_sum([],3)
+		    assert e.type == AttributeError
+
         assert output == "Array size should be greater than 0"
 
     def test_skip_sports_positiveskip(self):
         obj = SubArray
         output = obj.subarray_sum([2,1,1,1,3,13,4],3)
-        assert output == 3
+        message = "Both the values are equal"
+        assertEqual(output, 3, message)
         
    
