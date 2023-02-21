@@ -20,7 +20,7 @@ Steps to test and deploy the api
 1. selected deploy api from actions tab
 2. created new stage, named test
 3. entered the desriptions and deployed 
-4. invoke api => https://d8g9gut0vj.execute-api.ap-northeast-1.amazonaws.com/test
+4. link of api was given in invoke api 
 5. pasted the link in postman and tested the code
 
 
