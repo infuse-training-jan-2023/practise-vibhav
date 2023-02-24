@@ -1,16 +1,16 @@
-import * as AWS from "@aws-sdk/client-s3";
+import { S3Client } as AWS from "@aws-sdk/client-s3";
+const s3 = new AWS.S3();
 
 export const handler = async(event) => {
     const timestamp = Date.now();
-    var s3 = new AWS.S3();
     console.log(s3)
 
-    let upload =  function(params){
-        return  s3.putObject(params)
+    let addFileTos3Bucket =  function(s3BucketParams){
+        return  s3.putObject(s3BucketParams)
     }
     
     
-    const param ={
+    const s3BucketParams ={
             ACL: 'public-read',
             Body: 'hello world',
             ContentType: 'text/html',
@@ -18,8 +18,8 @@ export const handler = async(event) => {
             Key: timestamp+".txt"
         };
         
-     let up = await upload(param)
-     console.log(up)
+     let addFileTos3BucketOutput = await addFileTos3Bucket(s3BucketParams)
+     console.log(addFileTos3BucketOutput)
  
     
     const response = {
