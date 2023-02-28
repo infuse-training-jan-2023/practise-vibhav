@@ -1,0 +1,144 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::Serverless-2016-10-31"
+
+Description: Using cloud formation for automation
+
+Parameters:
+  REQMethod:
+    Type: String
+    Default: ANY
+
+  EnvironmentName:
+    Type: String
+    Default: Prod
+
+Resources:
+  s3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: "vstoragelog"
+      AccessControl: PublicRead
+
+  LogsS3BucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref s3Bucket
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          Effect: Allow
+          Action: "s3:GetObject"
+          Principal: "*"
+          Resource: !Join
+            - ""
+            - - "arn:aws:s3:::"
+              - !Ref s3Bucket
+              - /*
+
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: "lamda-user"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: WriteToS3Policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: "s3:PutObject"
+                Resource: "*"
+
+  CreateFilesIns3:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs14.x
+      Role: !GetAtt LambdaRole.Arn
+      Handler: index.handler
+      InlineCode: |
+        const AWS = require('aws-sdk');
+        module.exports.handler = async function(event){
+            const s3 = new AWS.S3();
+            const timestamp = Date.now();
+
+            let addFileTos3Bucket =  function(s3BucketParams){
+                return  s3.putObject(s3BucketParams)
+            }
+            
+            
+            const s3BucketParams ={
+                    ACL: 'public-read',
+                    Body: 'hello world',
+                    ContentType: 'text/html',
+                    Bucket: 'vstoragelogs',
+                    Key: timestamp+".txt"
+                };
+
+            let addFileTos3BucketOutput = await addFileTos3Bucket(s3BucketParams)
+
+            const response = {
+                'statusCode': 200,
+                'body': 'File created successfully in the s3 bucket !!!'
+            };
+            return response;
+        };
+      Description: To create a file with timestamp in s3bucket at invocation.
+      Tracing: Active
+
+  MyRestApi:
+    Type: "AWS::ApiGateway::RestApi"
+    Properties:
+      Name: myApi
+    DependsOn: CreateFilesIns3
+
+  APIGateway:
+    Type: 'AWS::ApiGateway::Resource'
+    Properties:
+      RestApiId: !Ref MyRestApi
+      ParentId: !GetAtt  MyRestApi.RootResourceId
+      PathPart: !Ref CreateFilesIns3
+    DependsOn:
+      - MyRestApi
+
+  GatewayMethod:
+    Type: "AWS::ApiGateway::Method"
+    Properties:
+      RestApiId: !Ref MyRestApi
+      ResourceId: !GetAtt MyRestApi.RootResourceId
+      HttpMethod: !Sub ${REQMethod}
+      AuthorizationType: NONE
+      MethodResponses:
+        - StatusCode: 200
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - >-
+            arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LamdaFunctionArn}/invocations
+          - LamdaFunctionArn: !GetAtt CreateFilesIns3.Arn
+
+  MyDeployment:
+    Type: "AWS::ApiGateway::Deployment"
+    Properties:
+      RestApiId: !Ref MyRestApi
+      Description: My deployment
+      StageName: !Sub ${EnvironmentName}
+    DependsOn: GatewayMethod
+
+  CreateFilesIns3InvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !GetAtt CreateFilesIns3.Arn
+      Action: "lambda:InvokeFunction"
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${MyRestApi}/${EnvironmentName}/${REQMethod}/"
+    DependsOn: MyDeployment
